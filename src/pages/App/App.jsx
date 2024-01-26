@@ -30,7 +30,7 @@ export default function App() {
           <Routes>
             <Route path="/auth" element={<AuthPage setUser={setUser}/>}/>
             <Route path='/member' element={<MemberCreatePage/>}/>
-            <Route path='/rest' element={<RestCreatePage/>}/>
+            <Route path='/rest' element={<RestCreatePage setRestarauntProfile={setRestarauntProfile}/>}/>
             <Route path='/*' element={<Navigate to='/auth'/>}/>
           </Routes>
       }
