@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { create } from "../../utilities/rest-posts-api";
 
 export default function NewRestPostPage() {
+    const navigate = useNavigate();
     const [newPost, setNewPost] = useState({
         description: '',
         location: '',
@@ -9,12 +12,25 @@ export default function NewRestPostPage() {
         rsvpTotal: 0
     })
 
-    function handleSubmit() {
-
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+        const payload = {...newPost};
+        await create(payload);
+        setNewPost({
+            description: '',
+            location: '',
+            time: '',
+            donationValue: 0,
+            rsvpTotal: 0
+        })
+        navigate('/home');
     }
 
-    function handleChange() {
-
+    function handleChange(evt) {
+        setNewPost({
+            ...newPost,
+            [evt.target.name]: evt.target.value
+        });
     }
 
     return(
