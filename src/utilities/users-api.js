@@ -12,3 +12,7 @@ export function login(credentials) {
 export function checkToken() {
     return sendRequest(`${BASE_URL}/check-token`);
 }
+
+export function getProfile() {
+    return sendRequest(BASE_URL + '/get-profile');
+}

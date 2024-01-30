@@ -8,6 +8,7 @@ const restPost = new Schema({
     description: {type: String},
     location: {type: String},
     posted: {type: Date},
+    time: {type: Date},
     donationValue: {type: Number},
     rsvpTotal: {type: Number},
     rsvpList: [{

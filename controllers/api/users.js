@@ -1,4 +1,5 @@
 const User = require('../../models/user')
+const RestProfile = require('../../models/restProfile')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
@@ -6,7 +7,8 @@ const bcrypt = require('bcrypt');
 module.exports = {
     create,
     login,
-    checkToken
+    checkToken,
+    getProfile
 }
 
 
@@ -38,6 +40,13 @@ function checkToken(req, res) {
     // req.user will always be there for you when a token is sent
     console.log('req.user', req.user);
     res.json(req.exp);
+}
+
+//once creating community member functionality this will have to be changed to check both the 
+//rest profiles and member profiles
+async function getProfile(req, res) {
+    const profile = await RestProfile.findOne({user: req.user._id});
+    res.json(profile);
 }
 
 
