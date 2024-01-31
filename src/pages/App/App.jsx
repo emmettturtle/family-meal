@@ -19,7 +19,7 @@ export default function App() {
       {/* logged in user and profile, community member state and res member state */}
       { user && (memberProfile || restarauntProfile) ?
           <>
-            <NavBar user={user} setUser={setUser}/>
+            <NavBar user={user} setUser={setUser} setRestarauntProfile={setRestarauntProfile}/>
             <Routes>
               {/* Route components in here */}
               <Route path="/home" element={<HomePage />} />

@@ -5,6 +5,7 @@ const commentSchema = require('./commentSchema')
 const restPost = new Schema({
     // description, likes, location, post time, donation value, rsvp total, comments, rsvp list
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+    profile: { type: Schema.Types.ObjectId, ref: 'RestProfile', required: true},
     description: {type: String},
     location: {type: String},
     posted: {type: Date},
