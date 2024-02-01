@@ -2,7 +2,8 @@ const RestProfile = require('../../models/restProfile');
 
 
 module.exports = {
-    create
+    create,
+    getFeed
 }
 
 //package address
@@ -20,4 +21,17 @@ async function create(req, res) {
         }
     });
     res.json(profile);
+}
+
+async function getFeed(req, res){
+    try {
+        const profile = await RestProfile.findOne({user: req.user._id});
+        const feed = await profile.feed();
+        console.log(feed);
+        res.json(feed);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+
 }

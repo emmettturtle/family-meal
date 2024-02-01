@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const addressSchema = require('./addressSchema');
 const Schema = mongoose.Schema;
 
+const {Client} = require('@googlemaps/google-maps-services-js');
 const RestPost = require('./restPost');
 
-const restProfile = new Schema({
+const restProfileSchema = new Schema({
     // name, address, description, userID, signupDate, donation total
     name: {type: String, required: true},
     description: {type: String},
@@ -16,6 +17,10 @@ const restProfile = new Schema({
     toJSON: { virtuals: true } //allows virtuals to be sent to JSON
 });
 
+restProfileSchema.statics.findProfile = function(profileId) {
+
+}
+
 //instance method for get feed:
 //iterate through posts
 //get the address of this profile
@@ -24,48 +29,44 @@ const restProfile = new Schema({
 //convert both to URI
 //run API, origin is user address, destination is post address
 //if distance is less than 50 km add to feed
-restProfile.methods.feed = async function(){
+restProfileSchema.methods.feed = async function(){
     let feed = [];
-    let userAddress = this.address.street + ', ' + this.address.city + ', ' + this.address.state + ' ' + this.address.zip;
-    const allPosts = await RestPost.find({});
+    let userAddress = this.address.getAddressStr();
+    const allPosts = await RestPost.find({}).populate('profile');
+    let postAddresses = [];
+    allPosts.forEach(async function(post){
+        postAddresses.push(post.profile.address.getAddressStr());
+    });
 
-    allPosts.forEach(function(post){
-        let postAddress = post.profile.address;
-        let postAddressStr = postAddress.street + ', ' + postAddress.city + ', ' + postAddress.state + ' ' + postAddress.zip;
-        let distance = findDistance(userAddress, postAddressStr);
-
-        if (distance < 50000){
-            feed.push(post);
+    const response = await findDistances([userAddress], postAddresses);
+    response.forEach(function(postUserDistance, idx) {
+        if (postUserDistance.distance.value < 50000) {
+            feed.push(allPosts[idx]);
         }
     });
 
     return feed;
+    
 }
 
-//API KEY: AIzaSyCwX6U4uK-hbz7_A7ekpa9xtVeqtyqkeNo
 
-async function findDistance(pointA, pointB){
-    // URI the values
-    // run the API call
-    // return the distance in meters
-    const API_KEY = 'AIzaSyCwX6U4uK-hbz7_A7ekpa9xtVeqtyqkeNo';
-    let pointAURI = encodeURI(pointA);
-    let pointBURI = encodeURI(pointB);
-    let distance = 0;
+async function findDistances(origin, destinations){
     try{
-        const res = await fetch(
-            `https://maps.googleapis.com/maps/api/distancematrix/json
-                ?destinations=${pointAURI}
-                &origins=${pointBURI}
-                &key=${API_KEY}`
-        );
-        const row = res.rows[0];
-        distance = row.elements[0].distance.value;
+        const client = new Client({});
+        const res = await client.distancematrix({
+            params: {
+                key: process.env.API_KEY,
+                destinations: destinations,
+                origins: origin
+            },
+            timeout: 1000
+        })
+        return res.data.rows[0].elements;
     } catch (err) {
+        console.log('LOGGING ERROR')
         console.log(err);
     }
-    
-    return distance;    
+
 }
 
-module.exports = mongoose.model('RestProfile', restProfile);
+module.exports = mongoose.model('RestProfile', restProfileSchema);

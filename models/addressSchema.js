@@ -10,4 +10,9 @@ const addressSchema = new Schema({
     toJSON: { virtuals: true }
 });
 
+addressSchema.methods.getAddressStr = function(){
+    const addressStr = this.street + ', ' + this.city + ', ' + this.state + ' ' + this.zip;
+    return addressStr;
+}
+
 module.exports = addressSchema;
