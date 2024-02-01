@@ -27,7 +27,7 @@ async function getFeed(req, res){
     try {
         const profile = await RestProfile.findOne({user: req.user._id});
         const feed = await profile.feed();
-        console.log(feed);
+        console.log(feed)
         res.json(feed);
     } catch (err) {
         console.log(err);

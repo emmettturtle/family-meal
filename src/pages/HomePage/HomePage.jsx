@@ -15,7 +15,7 @@ export default function HomePage() {
         getUserFeed();
     }, []);
 
-    const feedPosts = feed.map(post => {
+    const feedPosts = feed.map(post => 
         <Post 
             key={post._id}
             profile={post.profile}
@@ -29,7 +29,7 @@ export default function HomePage() {
             likes={post.likes}
             comments={post.comments}
         />
-    })
+    )
 
     return (
         <>
