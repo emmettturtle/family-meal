@@ -4,7 +4,7 @@ import { getFeed } from '../../utilities/rest-profile-api';
 import Post from '../../components/Post/Post';
 
 
-export default function HomePage() {
+export default function HomePage({restarauntProfile}) {
     const [feed, setFeed] = useState([]);
 
     useEffect(function() {
@@ -32,10 +32,20 @@ export default function HomePage() {
     )
 
     return (
-        <>
-            <h1>Home Page</h1>
+        <div className='m-7'>
+            <div className='mb-5'>
+                <span className='font-bold text-xl'>
+                    Activity in {restarauntProfile.address.city}, {restarauntProfile.address.state} and surrounding neighborhoods...
+                </span>
+                <br />
+                <span>
+                    {feed.length} distribution posts in your area
+                </span>
+            </div>
             <Link to="/rest-post/new">Create New Post</Link>
-            {feedPosts}
-        </>
+            <div className='grid-cols-1'>
+                {feedPosts}
+            </div>
+        </div>
     );
 }
