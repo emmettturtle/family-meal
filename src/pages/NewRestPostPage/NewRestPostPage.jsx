@@ -34,18 +34,63 @@ export default function NewRestPostPage() {
     }
 
     return(
-        <form autoComplete="off" onSubmit={handleSubmit}>
-            <label>Description: (What does this donation consist of?)</label>
-            <textarea name="description" value={newPost.description} onChange={handleChange}></textarea>
-            <label>Location: </label>
-            <input type="text" name="location" value={newPost.location} onChange={handleChange}/>
-            <label>Time: </label>
-            <input type="datetime-local" name="time" value={newPost.time} onChange={handleChange}/>
-            <label>Estimated Donation Value: </label>
-            <input type="number" name="donationValue" value={newPost.donationValue} onChange={handleChange}/>
-            <label>RSVP Limit: </label>
-            <input type="number" name="rsvpTotal" value={newPost.rsvpTotal} onChange={handleChange}/>
-            <button type="submit">CREATE POST</button>
-        </form>
+        <main className='flex items-center justify-center'>
+            <div className="rounded-md mb-5 border m-20">
+                <form autoComplete="off" onSubmit={handleSubmit} className="m-5">
+                    <label>Description: (What does this donation consist of?)</label>
+                    <br />
+                    <textarea 
+                        name="description" 
+                        value={newPost.description} 
+                        onChange={handleChange}
+                        className='border border-black rounded-lg p-1'
+                    ></textarea>
+                    <br /> <br />
+                    <label>Location: </label>
+                    <br />
+                    <input 
+                        type="text" 
+                        name="location" 
+                        value={newPost.location} 
+                        onChange={handleChange}
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /><br />
+                    <label>Time: </label>
+                    <br />
+                    <input 
+                        type="datetime-local" 
+                        name="time" 
+                        value={newPost.time} 
+                        onChange={handleChange}
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /><br />
+                    <label>Estimated Donation Value: </label>
+                    <br />
+                    <input 
+                        type="number" 
+                        name="donationValue" 
+                        value={newPost.donationValue} 
+                        onChange={handleChange}
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /><br />
+                    <label>RSVP Limit: </label>
+                    <br />
+                    <input 
+                        type="number" 
+                        name="rsvpTotal" 
+                        value={newPost.rsvpTotal} 
+                        onChange={handleChange}
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /><br />
+                    <button type="submit" className="bg-primary rounded mt-5">
+                        <span className="text-white m-5">Create Post</span>
+                    </button>
+                </form>
+            </div>  
+        </main>
     );
 }

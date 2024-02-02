@@ -10,10 +10,14 @@ export default function NavBar({user, setUser, setRestarauntProfile }) {
     }
 
     return (
-        <nav className='bg-secondaryBG'>
-            Welcome, {user.name}
-            &nbsp; | &nbsp;
-            <Link to="#" onClick={handleLogOut}>Log Out</Link>
-        </nav>
+        <div className='bg-secondaryBG'>
+            <nav className='bg-secondaryBG flex justify-center mt-4'>
+                <ul>
+                    <li className='p-2'><Link to="/home">Home</Link></li>
+                    <li className='p-2'><Link to="#" onClick={handleLogOut}>Log Out</Link></li>
+                </ul>
+            </nav>
+        </div>
+
     );
 }

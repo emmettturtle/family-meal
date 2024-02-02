@@ -21,6 +21,7 @@ export default function App() {
       <div className='bg-primary p-2'>
         <span className='text-white font-bold text-xl p-2'>Family Meal</span>
       </div>
+      {/* if user get profile and set? */}
       { user && (memberProfile || restarauntProfile) ?
           <>
             <div className='grid grid-cols-[20%_80%]'>
