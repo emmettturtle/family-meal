@@ -21,6 +21,7 @@ export default function Post({
                     <br />
                     <span>{profile.address.city}, {profile.address.state}</span>
                     <br />
+                    <span>{posted}</span>
                 </div>
                 <div className="m-10">
                     <span className="">{description}</span>

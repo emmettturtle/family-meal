@@ -10,7 +10,7 @@ export default function HomePage({restarauntProfile}) {
     useEffect(function() {
         async function getUserFeed() {
             const userFeed = await getFeed();
-            setFeed(userFeed);
+            setFeed(userFeed.reverse());
         }
         getUserFeed();
     }, []);

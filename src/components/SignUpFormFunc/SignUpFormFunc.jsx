@@ -52,19 +52,59 @@ export default function SignUpFormFunc({ setUser }) {
     const disable = formData.password !== formData.confirm;
     return (
         <div>
-            <div className="form-container">
-                <form autoComplete="off" onSubmit={handleSubmit}>
+            <div className="rounded-md mb-5 border">
+                <form autoComplete="off" onSubmit={handleSubmit} className="m-5">
                     <label>Email</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <br />
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value={formData.email} 
+                        onChange={handleChange} 
+                        required 
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /> <br />
                     <label>Password</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+                    <br />
+                    <input 
+                        type="password" 
+                        name="password" 
+                        value={formData.password} 
+                        onChange={handleChange} 
+                        required 
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br />
+                    <br />
                     <label>Confirm</label>
-                    <input type="password" name="confirm" value={formData.confirm} onChange={handleChange} required />
-                    <select type="type" name="type" value={formData.type} onChange={handleChange} required>
+                    <br />
+                    <input 
+                        type="password" 
+                        name="confirm" 
+                        value={formData.confirm} 
+                        onChange={handleChange} 
+                        required 
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /> <br />
+                    <label>Are you a cummunity member or restaurant?</label>
+                    <br />
+                    <select 
+                        type="type" 
+                        name="type" 
+                        value={formData.type} 
+                        onChange={handleChange} 
+                        required
+                        className='border border-black rounded-lg p-1'
+                    >
                         <option value="Community Member">Community Member</option>
                         <option value="Restaurant">Restaurant</option>
                     </select>
-                    <button type="submit" disabled={disable}>SIGN UP</button>
+                    <br /><br />
+                    <button type="submit" className="bg-primary rounded mt-3" disabled={disable}>
+                        <span className="text-white m-5">SIGN UP</span>
+                    </button>
                 </form>
             </div>
             <p className="error-message">&nbsp;{formData.error}</p>

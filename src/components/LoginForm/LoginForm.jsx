@@ -38,13 +38,33 @@ export default function LoginForm({ setUser, setRestarauntProfile }) {
 
     return (
         <div>
-            <div className="form-container">
-                <form autoComplete="off" onSubmit={handleSubmit}>
-                    <label>Email</label>
-                    <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-                    <label>Password</label>
-                    <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-                    <button type="submit">LOG IN</button>
+            <div className="rounded-md mb-5 border">
+                <form autoComplete="off" onSubmit={handleSubmit} className='m-5'>
+                    <label className=''>Your Email</label>
+                    <br />
+                    <input 
+                        type="text" 
+                        name="email" 
+                        value={credentials.email} 
+                        onChange={handleChange} 
+                        required 
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br /><br />
+                    <label>Your Password</label>
+                    <br />
+                    <input 
+                        type="password" 
+                        name="password" 
+                        value={credentials.password} 
+                        onChange={handleChange} 
+                        required 
+                        className='border border-black rounded-lg p-1'
+                    />
+                    <br />
+                    <button type="submit" className="bg-primary rounded mt-5">
+                        <span className="text-white m-5">LOGIN</span>
+                    </button>
                 </form>
             </div>
             <p className="error-message">&nbsp;{error}</p>
