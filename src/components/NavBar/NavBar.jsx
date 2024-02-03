@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import * as userService from '../../utilities/users-service'
 
 export default function NavBar({user, setUser, setRestarauntProfile }) {
@@ -13,8 +13,9 @@ export default function NavBar({user, setUser, setRestarauntProfile }) {
         <div className='bg-secondaryBG'>
             <nav className='bg-secondaryBG flex justify-center mt-4'>
                 <ul>
-                    <li className='p-2'><Link to="/home">Home</Link></li>
-                    <li className='p-2'><Link to="#" onClick={handleLogOut}>Log Out</Link></li>
+                    <li className='p-2'><NavLink to="/home" end>Home</NavLink></li>
+                    <li className='p-2'><NavLink to="/rest-post/new" end>Create</NavLink></li>
+                    <li className='p-2'><Link to="#" onClick={handleLogOut} end>Log Out</Link></li>
                 </ul>
             </nav>
         </div>

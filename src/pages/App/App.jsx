@@ -24,17 +24,19 @@ export default function App() {
       {/* if user get profile and set? */}
       { user && (memberProfile || restarauntProfile) ?
           <>
-            <div className='grid grid-cols-[20%_80%]'>
+            <div className='grid grid-cols-[20%_80%] h-[96vh]'>
               <NavBar user={user} setUser={setUser} setRestarauntProfile={setRestarauntProfile}/>
-              
-              <Routes>
-                {/* Route components in here */}
-                <Route path="/home" element={<HomePage 
-                  restarauntProfile={restarauntProfile}
-                />} />
-                <Route path="/rest-post/new" element={<NewRestPostPage />}/>
-                <Route path='/*' element={<Navigate to='/home'/>}/>
-              </Routes>
+              <div className='overflow-scroll'>
+                <Routes>
+                  {/* Route components in here */}
+                  <Route path="/home" element={<HomePage 
+                    restarauntProfile={restarauntProfile}
+                  />} />
+                  <Route path="/rest-post/new" element={<NewRestPostPage />}/>
+                  <Route path='/*' element={<Navigate to='/home'/>}/>
+                </Routes>
+              </div>
+
             </div>
           </>
           :
