@@ -41,7 +41,7 @@ export default function RestCreatePage({setRestarauntProfile}) {
                 <form autoComplete="off" onSubmit={handleSubmit} className="m-5">
                     <h4 className="font-bold text-lg">Tell us about your restaurant!</h4>
                     <br />
-                    <label>Name of Restaraunt: </label>
+                    <label>Name of Restaurant: </label>
                     <br />
                     <input 
                         type="text" 
@@ -52,7 +52,7 @@ export default function RestCreatePage({setRestarauntProfile}) {
                         className='border border-black rounded-lg p-1'
                     />
                     <br /><br />
-                    <label>Description of Restaraunt (tell everyone about yourselves!): </label>
+                    <label>Description of Restaurant (tell everyone about yourselves!): </label>
                     <br />
                     <textarea 
                         name="description" 
