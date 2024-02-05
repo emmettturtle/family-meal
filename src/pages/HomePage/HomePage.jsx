@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getFeed } from '../../utilities/rest-profile-api';
 import Post from '../../components/Post/Post';
+import { DateTime } from 'luxon';
 
 
 export default function HomePage({restarauntProfile}) {
@@ -22,8 +23,8 @@ export default function HomePage({restarauntProfile}) {
             user={post.user}
             description={post.description}
             location={post.location}
-            posted={post.posted}
-            time={post.time}
+            posted={DateTime.fromISO(post.posted).toLocaleString(DateTime.DATE_SHORT)}
+            time={DateTime.fromISO(post.time).toLocaleString(DateTime.DATETIME_SHORT)}
             rsvpTotal={post.rsvpTotal}
             rsvpList={post.rsvpList}
             likes={post.likes}
@@ -33,19 +34,29 @@ export default function HomePage({restarauntProfile}) {
 
     return (
         <div className='m-7'>
+            {feedPosts.length ?
+                <>
+                    <div className='mb-5'>
+                        <span className='font-bold text-xl'>
+                            Activity in {restarauntProfile.address.city}, {restarauntProfile.address.state} and surrounding neighborhoods...
+                        </span>
+                        <br />
+                        <span>
+                            {feed.length} distribution posts in your area
+                        </span>
+                    </div>
+                    <div className='grid-cols-1'>
+                        {feedPosts}
+                    </div>
+                </>
+            :
             <div className='mb-5'>
-                <span className='font-bold text-xl'>
-                    Activity in {restarauntProfile.address.city}, {restarauntProfile.address.state} and surrounding neighborhoods...
-                </span>
-                <br />
-                <span>
-                    {feed.length} distribution posts in your area
+                <span className='text-xl'>
+                    No posts yet in {restarauntProfile.address.city}, {restarauntProfile.address.state} or surrounding areas... yet!
                 </span>
             </div>
-            <Link to="/rest-post/new">Create New Post</Link>
-            <div className='grid-cols-1'>
-                {feedPosts}
-            </div>
+            }
+            
         </div>
     );
 }
