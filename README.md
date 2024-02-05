@@ -18,7 +18,7 @@ This is the search page where a user can search for another user and any matchin
 
 
 ## Getting Started
-To view the site go here. 
+To view the site go [here](https://family-meal-ev-2cb6ac03bf01.herokuapp.com/home). 
 
 Some notes:
 - Create an account and choose the restaurant option for profile settup (community member not yet working)
